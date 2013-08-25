@@ -28,7 +28,7 @@ module.exports = function mini_factory(){
   var handler = function(req, reply, out){
     function exitout(){
       if(out){
-        out();
+        out(req, reply);
       }
       else{
         reply('404:request not handled');
