@@ -58,5 +58,9 @@ module.exports = function mini_factory(){
     return this;
   }
 
+  handler.before = function(fn){
+    stack.unshift(fn);
+  }
+
   return handler;
 }
