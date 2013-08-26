@@ -43,7 +43,7 @@ module.exports = function mini_factory(){
       }
       else{
         var handle = usestack.shift();
-        
+
         handle(req, reply, function(){
           run_stack();
         })
@@ -54,11 +54,17 @@ module.exports = function mini_factory(){
   }
 
   handler.use = function(fn){
+    if(typeof(fn)!=='function'){
+      throw new Error(fn + ' must be a function')
+    }
     stack.push(fn);
     return this;
   }
 
   handler.before = function(fn){
+    if(typeof(fn)!=='function'){
+      throw new Error(fn + ' must be a function')
+    }
     stack.unshift(fn);
   }
 
